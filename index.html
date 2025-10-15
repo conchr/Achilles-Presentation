@@ -18,13 +18,13 @@
             min-height: 100vh;
             margin: 0;
             overflow: hidden;
-            padding: 20px;
+            padding: 10px;
         }
 
         .presentation-container {
-            width: 95%;
+            width: 100%;
             max-width: 1100px;
-            height: 80vh;
+            height: 90vh;
             min-height: 500px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             position: relative;
@@ -67,7 +67,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            padding: 3rem;
+            padding: 2rem;
             box-sizing: border-box;
             opacity: 0;
             pointer-events: none;
@@ -102,13 +102,13 @@
 
         .slide-content ul, .slide-content ol {
             list-style-position: inside;
-            padding-left: 1.5rem;
+            padding-left: 1rem;
         }
 
         .slide-content li {
             margin-bottom: 0.75rem;
             position: relative;
-            padding-left: 1.5rem;
+            padding-left: 1rem;
             color: #4e342e;
         }
 
@@ -159,12 +159,13 @@
             z-index: 10;
         }
 
+        /* Διάταξη για κινητά */
         @media (max-width: 768px) {
             .slide {
                 padding: 1.5rem;
             }
             .presentation-container {
-                height: 90vh;
+                height: 95vh;
             }
             .slide-content h1 {
                 font-size: 1.5rem;
@@ -173,6 +174,54 @@
                 font-size: 0.7rem;
                 top: 0.8rem;
                 left: 0.8rem;
+            }
+            
+            /* Αλλαγή διάταξης για navigation footer */
+            #navigation-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem;
+            }
+            
+            .nav-buttons-container {
+                display: flex;
+                gap: 0.5rem;
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .nav-button {
+                padding: 0.5rem 1rem !important;
+                font-size: 0.9rem !important;
+                flex: 1;
+                max-width: 48%;
+            }
+            
+            .slide-counter {
+                order: 2;
+                text-align: center;
+                margin-top: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide-content h1 {
+                font-size: 1.3rem;
+            }
+            .slide-content h2 {
+                font-size: 1.1rem;
+            }
+            .slide-content p, .slide-content li {
+                font-size: 0.9rem;
+            }
+            
+            .nav-button {
+                padding: 0.4rem 0.8rem !important;
+                font-size: 0.8rem !important;
+            }
+            
+            #slide-8 h1 {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -194,7 +243,7 @@
                 <div class="slide-content">
                     <h1 class="text-4xl font-extrabold text-center">Τα Φάρσαλα και ο Αχιλλέας</h1>
                     <h2 class="text-2xl font-semibold text-center mt-4 text-gray-700">Όπου ο Μύθος Γίνεται Τόπος</h2>
-                    <p class="text-lg mt-8 text-center leading-relaxed">Η γεωγραφική, ιστορική και πολιτισμική σύνδεση των Φαρσάλων με τον μυθικό ήρωα Αχιλλέα και την ομηρική Φθία.</p>
+                    <p class="text-lg mt-8 leading-relaxed text-left">Η γεωγραφική, ιστορική και πολιτισμική σύνδεση των Φαρσάλων με τον μυθικό ήρωα Αχιλλέα και την ομηρική Φθία.</p>
                     <p class="text-2xl font-bold italic text-red-500 mt-12 text-center">Ποια πόλη μπορεί να ισχυριστεί ότι είναι η πατρίδα του ισχυρότερου πολεμιστή όλων των εποχών;</p>
                     <div class="keyboard-hint">
                         <i class="fas fa-info-circle"></i> Χρησιμοποιήστε τα βέλη για πλοήγηση
@@ -205,11 +254,11 @@
             <!-- Slide 2: Η Ταυτότητα της Πόλης -->
             <div class="slide" id="slide-2">
                 <div class="slide-content">
-                    <h1 class="text-3xl font-bold">Η Ταυτότητα της Πόλης</h1>
-                    <p class="text-lg">Η πόλη των Φαρσάλων στη Θεσσαλία προβάλλει έντονα την ταυτότητά της ως η συνέχεια της ομηρικής Φθίας, της γενέτειρας του Αχιλλέα.</p>
+                    <h1 class="text-3xl font-bold text-left">Η Ταυτότητα της Πόλης</h1>
+                    <p class="text-lg text-left">Η πόλη των Φαρσάλων στη Θεσσαλία προβάλλει έντονα την ταυτότητά της ως η συνέχεια της ομηρικής Φθίας, της γενέτειρας του Αχιλλέα.</p>
 
-                    <h2 class="text-xl font-semibold mt-6">Ο Ήρωας και ο Στρατός του:</h2>
-                    <ul class="list-disc text-lg ml-6 space-y-2">
+                    <h2 class="text-xl font-semibold mt-6 text-left">Ο Ήρωας και ο Στρατός του:</h2>
+                    <ul class="text-lg space-y-2 text-left">
                         <li>Ο Αχιλλέας, γιος της Θέτιδας και του Πηλέα, ήταν ο ατρόμητος αρχηγός των Ελλήνων στον Τρωικό Πόλεμο.</li>
                         <li>Ο στρατός του, οι φημισμένοι Μυρμιδόνες, συνδέονται από την παράδοση με τα μυρμήγκια (μύρμηκες).</li>
                         <li>Σήμερα, στην είσοδο της πόλης, υπάρχει ένα γλυπτό μυρμηγκιού που κρατά δόρυ και ασπίδα, τιμώντας αυτή την ηρωική καταγωγή.</li>
@@ -220,8 +269,8 @@
             <!-- Slide 3: Η Γεωγραφία του Βασιλείου -->
             <div class="slide" id="slide-3">
                 <div class="slide-content">
-                    <h1 class="text-3xl font-bold">Η Γεωγραφία του Βασιλείου</h1>
-                    <ul class="list-disc text-lg ml-6 space-y-3">
+                    <h1 class="text-3xl font-bold text-left">Η Γεωγραφία του Βασιλείου</h1>
+                    <ul class="text-lg space-y-3 text-left">
                         <li>Η ομηρική Φθία δεν ήταν αρχικά μία μόνο πόλη, αλλά μια εκτεταμένη επικράτεια, ένα ολόκληρο βασίλειο των Αχαιών.</li>
                         <li>Το βασίλειο του Αχιλλέα εκτεινόταν από τη Νέα Αγχίαλο μέχρι τα Φάρσαλα και τη Λαμία.</li>
                         <li>Η χώρα των Μυρμιδόνων είχε ως όρια τα Φάρσαλα και τον ποταμό Σπερχειό.</li>
@@ -234,13 +283,13 @@
             <!-- Slide 4: Η Ιστορική Διεκδίκηση -->
             <div class="slide" id="slide-4">
                 <div class="slide-content">
-                    <h1 class="text-3xl font-bold">Η Ιστορική Διεκδίκηση: Γιατί τα Φάρσαλα;</h1>
-                    <ol class="list-decimal text-lg ml-6 space-y-3">
+                    <h1 class="text-3xl font-bold text-left">Η Ιστορική Διεκδίκηση: Γιατί τα Φάρσαλα;</h1>
+                    <ol class="text-lg space-y-3 text-left">
                         <li>Πρώτες Πηγές: Ο ιστορικός Φερεκύδης (6ος αιώνας π.Χ.) ήταν ο πρώτος που ταύτισε την ομηρική Φθία με την πόλη Φάρσαλο.</li>
                         <li>Η Μεγάλη Μαρτυρία: Ο τραγωδός Ευριπίδης (5ος αιώνας π.Χ.) στην τραγωδία του Ανδρομάχη αναφέρει ρητά τα Φάρσαλα ως Φθία.</li>
                         <li>Τοπική Λατρεία: Λατρευόταν η μητέρα του ήρωα, η Νηρηίδα Θέτιδα, καθώς και ο δάσκαλός του, ο Κένταυρος Χείρωνας.</li>
                     </ol>
-                    <p class="mt-8 p-4 bg-yellow-50 border-l-4 border-yellow-500 font-semibold shadow-md">
+                    <p class="mt-8 p-4 bg-yellow-50 border-l-4 border-yellow-500 font-semibold shadow-md text-left">
                         Η Φάρσαλος υπήρξε το ισχυρότερο κέντρο στην ευρύτερη περιοχή της Φθίας κατά την Κλασική Εποχή και υιοθέτησε τη μυθική κληρονομιά.
                     </p>
                 </div>
@@ -249,30 +298,30 @@
             <!-- Slide 5: Αρχαιολογική Τεκμηρίωση -->
             <div class="slide" id="slide-5">
                 <div class="slide-content">
-                    <h1 class="text-3xl font-bold">Αρχαιολογική Τεκμηρίωση: Η Πίστη των Αρχαίων</h1>
-                    <h2 class="text-xl font-semibold">Μυκηναϊκή Παρουσία:</h2>
-                    <p class="text-lg">Στο Δυτικό Νεκροταφείο βρέθηκε ένας Μυκηναϊκός θαλαμοειδής τάφος, επιβεβαιώνοντας αχαϊκό πληθυσμό την εποχή του Τρωικού Πολέμου.</p>
-                    <h2 class="text-xl font-semibold mt-4">Ηρωική Συνείδηση (6ος-5ος αι. π.Χ.):</h2>
-                    <ul class="list-disc text-lg ml-6 space-y-2">
+                    <h1 class="text-3xl font-bold text-left">Αρχαιολογική Τεκμηρίωση: Η Πίστη των Αρχαίων</h1>
+                    <h2 class="text-xl font-semibold text-left">Μυκηναϊκή Παρουσία:</h2>
+                    <p class="text-lg text-left">Στο Δυτικό Νεκροταφείο βρέθηκε ένας Μυκηναϊκός θαλαμοειδής τάφος, επιβεβαιώνοντας αχαϊκό πληθυσμό την εποχή του Τρωικού Πολέμου.</p>
+                    <h2 class="text-xl font-semibold mt-4 text-left">Ηρωική Συνείδηση (6ος-5ος αι. π.Χ.):</h2>
+                    <ul class="text-lg space-y-2 text-left">
                         <li>Βρέθηκε Αρχαϊκός θολωτός τάφος με κτέρισμα έναν πανάκριβο, μελανόμορφο κρατήρα του ζωγράφου Εξηκία.</li>
                         <li>Η αναβίωση των μυκηναϊκών ταφικών εθίμων και το εύρημα δείχνουν ότι οι κάτοικοι θεωρούσαν εαυτούς απογόνους του Αχιλλέα.</li>
                     </ul>
-                    <h2 class="text-xl font-semibold mt-4">Η Ακρόπολη:</h2>
-                    <p class="text-lg">Στον λόφο του Προφήτη Ηλία (Αϊ Λιάς) βρίσκονται τα ερείπια της αρχαίας Ακρόπολης, ενός φυσικού οχυρού που συνδέεται με την υπόθεση ότι εκεί βρισκόταν το ανάκτορο του μυθικού ήρωα.</p>
+                    <h2 class="text-xl font-semibold mt-4 text-left">Η Ακρόπολη:</h2>
+                    <p class="text-lg text-left">Στον λόφο του Προφήτη Ηλία (Αϊ Λιάς) βρίσκονται τα ερείπια της αρχαίας Ακρόπολης, ενός φυσικού οχυρού που συνδέεται με την υπόθεση ότι εκεί βρισκόταν το ανάκτορο του μυθικού ήρωα.</p>
                 </div>
             </div>
 
             <!-- Slide 6: Η Κληρονομιά Σήμερα -->
             <div class="slide" id="slide-6">
                 <div class="slide-content">
-                    <h1 class="text-3xl font-bold">Η Κληρονομιά Σήμερα 🏛️</h1>
-                    <h2 class="text-xl font-semibold">Μνημεία:</h2>
-                    <ul class="list-disc text-lg ml-6 space-y-2">
+                    <h1 class="text-3xl font-bold text-left">Η Κληρονομιά Σήμερα 🏛️</h1>
+                    <h2 class="text-xl font-semibold text-left">Μνημεία:</h2>
+                    <ul class="text-lg space-y-2 text-left">
                         <li>Υπάρχει το άγαλμα του Αχιλλέα στην πλατεία.</li>
                         <li>Το άγαλμα της μητέρας του, της Θέτιδας, στις πηγές του Απιδανού, την απεικονίζει να κρατά τον βρέφος Αχιλλέα από την ευαίσθητη φτέρνα.</li>
                     </ul>
-                    <h2 class="text-xl font-semibold mt-4">Το Όραμα του Μέλλοντος (Αχίλλειο Κέντρο):</h2>
-                    <ul class="list-disc text-lg ml-6 space-y-2">
+                    <h2 class="text-xl font-semibold mt-4 text-left">Το Όραμα του Μέλλοντος (Αχίλλειο Κέντρο):</h2>
+                    <ul class="text-lg space-y-2 text-left">
                         <li>Ο Δήμος έχει σχεδιάσει τη δημιουργία του «Αχίλλειου Κέντρου Ιστορίας, Μυθολογίας και Πολιτισμού».</li>
                         <li>Θα λειτουργεί ως εκθεσιακός χώρος εικονικής πραγματικότητας (Virtual Reality), επιτρέποντας στους επισκέπτες να «βυθιστούν» σε ψηφιακές αναπαραστάσεις της Ομηρικής Φθίας.</li>
                     </ul>
@@ -309,16 +358,16 @@
         </div>
 
         <!-- Κουμπιά Πλοήγησης -->
-        <div id="navigation-buttons" class="flex justify-between p-4 bg-gray-100 border-t border-gray-200">
-            <div class="slide-counter" id="slide-counter">Σελίδα 1 από 8</div>
-            <div class="flex gap-2">
-                <button id="prev-btn" onclick="prevSlide()" disabled class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-150 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2">
+        <div id="navigation-buttons" class="flex flex-col p-4 bg-gray-100 border-t border-gray-200">
+            <div class="nav-buttons-container">
+                <button id="prev-btn" onclick="prevSlide()" disabled class="nav-button px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-150 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2">
                     <i class="fas fa-arrow-left"></i> Προηγούμενη
                 </button>
-                <button id="next-btn" onclick="nextSlide()" class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-150 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2">
+                <button id="next-btn" onclick="nextSlide()" class="nav-button px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-150 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2">
                     Επόμενη <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
+            <div class="slide-counter text-center mt-2" id="slide-counter">Σελίδα 1 από 8</div>
         </div>
     </div>
 
