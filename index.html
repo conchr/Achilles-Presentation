@@ -242,6 +242,11 @@
             .two-images-container img {
                 max-width: 100%;
             }
+            
+            .central-return-button {
+                padding: 0.6rem 1.2rem !important;
+                font-size: 0.9rem !important;
+            }
         }
 
         @media (max-width: 480px) {
@@ -272,6 +277,11 @@
             
             .municipality-logo {
                 width: 50px;
+            }
+            
+            .central-return-button {
+                padding: 0.5rem 1rem !important;
+                font-size: 0.8rem !important;
             }
         }
 
@@ -343,6 +353,31 @@
         .action-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Κουμπί επιστροφής στην κεντρική σελίδα */
+        .central-return-button {
+            background-color: #9333ea; /* Μωβ χρώμα */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 300px;
+            margin: 0.5rem auto 0;
+        }
+
+        .central-return-button:hover {
+            background-color: #7c3aed; /* Σκούρο μωβ */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
         }
     </style>
 </head>
@@ -536,6 +571,12 @@
                     Επόμενη <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
+            
+            <!-- Κουμπί επιστροφής στην κεντρική σελίδα - ΚΕΝΤΡΑΡΙΣΜΕΝΟ ΚΑΤΩ ΑΠΟ ΤΑ ΔΥΟ ΚΟΥΜΠΙΑ -->
+            <a href="https://conchr.github.io/Farsala-Center-Page/" class="central-return-button">
+                <i class="fas fa-home"></i> Επιστροφή στην Κεντρική Σελίδα
+            </a>
+            
             <div class="slide-counter text-center mt-2" id="slide-counter">Σελίδα 1 από 8</div>
         </div>
     </div>
