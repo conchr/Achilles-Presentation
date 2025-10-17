@@ -189,102 +189,6 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* Διάταξη για κινητά */
-        @media (max-width: 768px) {
-            .slide {
-                padding: 1.5rem;
-            }
-            .presentation-container {
-                height: 95vh;
-            }
-            .slide-content h1 {
-                font-size: 1.5rem;
-            }
-            .municipality-logo-container {
-                top: 0.8rem;
-                right: 0.8rem;
-            }
-            .municipality-logo {
-                width: 60px; /* Ακόμη μικρότερο σε κινητά */
-            }
-            
-            /* Αλλαγή διάταξης για navigation footer */
-            #navigation-buttons {
-                flex-direction: column;
-                gap: 0.5rem;
-                padding: 1rem;
-            }
-            
-            .nav-buttons-container {
-                display: flex;
-                gap: 0.5rem;
-                width: 100%;
-                justify-content: space-between;
-            }
-            
-            .nav-button {
-                padding: 0.5rem 1rem !important;
-                font-size: 0.9rem !important;
-                flex: 1;
-                max-width: 48%;
-            }
-            
-            .slide-counter {
-                order: 2;
-                text-align: center;
-                margin-top: 0.5rem;
-            }
-            
-            .two-images-container {
-                flex-direction: column;
-            }
-            
-            .two-images-container img {
-                max-width: 100%;
-            }
-            
-            .central-return-button {
-                padding: 0.6rem 1.2rem !important;
-                font-size: 0.9rem !important;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .slide-content h1 {
-                font-size: 1.3rem;
-            }
-            .slide-content h2 {
-                font-size: 1.1rem;
-            }
-            .slide-content p, .slide-content li {
-                font-size: 0.9rem;
-            }
-            
-            .nav-button {
-                padding: 0.4rem 0.8rem !important;
-                font-size: 0.8rem !important;
-            }
-            
-            #slide-8 h1 {
-                font-size: 1.8rem;
-            }
-            
-            .municipality-logo-container {
-                top: 0.5rem;
-                right: 0.5rem;
-                padding: 3px;
-            }
-            
-            .municipality-logo {
-                width: 50px;
-            }
-            
-            .central-return-button {
-                padding: 0.5rem 1rem !important;
-                font-size: 0.8rem !important;
-            }
-        }
-
         /* Βελτιωμένα στυλ για κουμπιά */
         .nav-button {
             padding: 0.75rem 1.5rem;
@@ -378,6 +282,168 @@
             background-color: #7c3aed; /* Σκούρο μωβ */
             transform: translateY(-2px);
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Διάταξη για κινητά */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 1.5rem;
+            }
+            .presentation-container {
+                height: 95vh;
+                min-height: 600px;
+            }
+            .slide-content h1 {
+                font-size: 1.5rem;
+            }
+            .municipality-logo-container {
+                top: 0.8rem;
+                right: 0.8rem;
+            }
+            .municipality-logo {
+                width: 60px; /* Ακόμη μικρότερο σε κινητά */
+            }
+            
+            /* Βελτιστοποιημένη διάταξη για navigation footer */
+            #navigation-buttons {
+                padding: 1rem;
+            }
+            
+            .nav-buttons-container {
+                display: flex;
+                gap: 0.5rem;
+                width: 100%;
+                justify-content: space-between;
+                margin-bottom: 0.5rem;
+            }
+            
+            .nav-button {
+                padding: 0.7rem 1.2rem !important;
+                font-size: 0.9rem !important;
+                flex: 1;
+                max-width: 48%;
+            }
+            
+            .slide-counter {
+                order: 2;
+                text-align: center;
+                margin-top: 0.5rem;
+                font-size: 0.8rem;
+            }
+            
+            .two-images-container {
+                flex-direction: column;
+            }
+            
+            .two-images-container img {
+                max-width: 100%;
+            }
+            
+            .central-return-button {
+                padding: 0.6rem 1.2rem !important;
+                font-size: 0.9rem !important;
+                margin-top: 0.5rem;
+            }
+            
+            /* Βελτιστοποιημένα μεγέθη γραμματοσειράς για κινητά */
+            .slide-content h2 {
+                font-size: 1.2rem;
+            }
+            
+            .slide-content p, .slide-content li {
+                font-size: 0.9rem;
+            }
+            
+            .highlight-box, .conclusion-box {
+                padding: 1rem;
+            }
+            
+            .keyboard-hint {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide {
+                padding: 1rem;
+            }
+            
+            .slide-content h1 {
+                font-size: 1.3rem;
+            }
+            
+            .slide-content h2 {
+                font-size: 1.1rem;
+            }
+            
+            .slide-content p, .slide-content li {
+                font-size: 0.85rem;
+            }
+            
+            .nav-button {
+                padding: 0.6rem 1rem !important;
+                font-size: 0.8rem !important;
+            }
+            
+            #slide-8 h1 {
+                font-size: 1.8rem;
+            }
+            
+            .municipality-logo-container {
+                top: 0.5rem;
+                right: 0.5rem;
+                padding: 3px;
+            }
+            
+            .municipality-logo {
+                width: 50px;
+            }
+            
+            .central-return-button {
+                padding: 0.5rem 1rem !important;
+                font-size: 0.8rem !important;
+            }
+            
+            .slide-counter {
+                font-size: 0.75rem;
+            }
+            
+            .highlight-box, .conclusion-box {
+                padding: 0.8rem;
+                margin: 1rem 0;
+            }
+            
+            .keyboard-hint {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .slide {
+                padding: 0.8rem;
+            }
+            
+            .slide-content h1 {
+                font-size: 1.2rem;
+            }
+            
+            .slide-content h2 {
+                font-size: 1rem;
+            }
+            
+            .nav-button {
+                padding: 0.5rem 0.8rem !important;
+                font-size: 0.75rem !important;
+            }
+            
+            .central-return-button {
+                padding: 0.5rem 0.8rem !important;
+                font-size: 0.75rem !important;
+            }
+            
+            .municipality-logo {
+                width: 40px;
+            }
         }
     </style>
 </head>
@@ -544,16 +610,25 @@
             <div class="slide" id="slide-8">
                 <div class="slide-content final-page">
                     <h1 class="text-5xl font-extrabold mb-10">Σας ευχαριστούμε που παρακολουθήσατε την παρουσίαση</h1>
-                    <div class="flex flex-col space-y-4 w-full max-w-sm">
-                        <!-- Σύνδεσμος για το Quiz (διατηρήθηκε ο αρχικός) -->
-                        <a href="https://conchr.github.io/Achilles/" target="_blank" class="action-button bg-indigo-600 text-white hover:bg-indigo-700">
+                    
+                    <!-- ΚΕΝΤΡΑΡΙΣΜΕΝΑ ΚΟΥΜΠΙΑ -->
+                    <div class="flex flex-col items-center justify-center w-full max-w-sm mx-auto space-y-4">
+                        <!-- Σύνδεσμος για το Quiz -->
+                        <a href="https://conchr.github.io/Achilles/" target="_blank" class="action-button bg-indigo-600 text-white hover:bg-indigo-700 w-full">
                             <i class="fas fa-question-circle"></i> Θέλετε να κάνετε το Quiz γνώσεων;
                         </a>
+                        
                         <!-- Κουμπί επανεκκίνησης της παρουσίασης -->
-                        <button onclick="restartPresentation()" class="action-button bg-green-500 text-white hover:bg-green-600">
+                        <button onclick="restartPresentation()" class="action-button bg-green-500 text-white hover:bg-green-600 w-full">
                             <i class="fas fa-redo"></i> Δείτε ξανά την παρουσίαση
                         </button>
+                        
+                        <!-- Κουμπί επιστροφής στην κεντρική σελίδα -->
+                        <a href="https://conchr.github.io/Farsala-Center-Page/" class="central-return-button w-full">
+                            <i class="fas fa-home"></i> Επιστροφή στην Κεντρική Σελίδα
+                        </a>
                     </div>
+                    
                     <div class="keyboard-hint mt-8">
                         <i class="fas fa-info-circle"></i> Πατήστε το βέλος αριστερά για να επιστρέψετε στην αρχή
                     </div>
