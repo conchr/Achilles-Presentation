@@ -9,23 +9,28 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         /* Custom Styles for Presentation Structure */
+        * {
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background: linear-gradient(135deg, #e8dfca 0%, #d9c9a9 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            overflow: hidden;
             padding: 10px;
+            overflow-x: hidden;
         }
 
         .presentation-container {
             width: 100%;
-            max-width: 1100px;
-            height: 90vh;
+            max-width: 1400px;
+            height: auto;
             min-height: 500px;
+            max-height: 95vh;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             position: relative;
             background-color: #f5f1e6;
@@ -42,9 +47,10 @@
 
         .progress-container {
             width: 100%;
-            height: 6px;
+            height: 8px;
             background-color: #d4c9b1;
             position: relative;
+            flex-shrink: 0;
         }
 
         .progress-bar {
@@ -59,6 +65,7 @@
             flex-grow: 1;
             position: relative;
             overflow: hidden;
+            min-height: 400px;
         }
 
         .slide {
@@ -67,13 +74,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            padding: 2rem;
+            padding: 1.5rem;
             box-sizing: border-box;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
             transform: translateX(20px);
             overflow-y: auto;
+            display: flex;
+            flex-direction: column;
             /* Background που μοιάζει με παλιό χειρόγραφο */
             background-image: 
                 linear-gradient(rgba(245, 241, 230, 0.9), rgba(245, 241, 230, 0.9)),
@@ -87,34 +96,44 @@
         }
 
         /* Specific Slide Content Styling */
+        .slide-content {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
         .slide-content h1 {
-            color: #5d4037; /* Dark Brown */
-            border-bottom: 3px solid #8b6b4c; /* Brown */
+            color: #5d4037;
+            border-bottom: 3px solid #8b6b4c;
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
+            font-weight: 800;
         }
 
         .slide-content h2 {
-            color: #8b6b4c; /* Brown */
+            color: #8b6b4c;
             margin-top: 1.5rem;
             margin-bottom: 0.75rem;
+            font-weight: 700;
         }
 
         .slide-content ul, .slide-content ol {
             list-style-position: inside;
-            padding-left: 1rem;
+            padding-left: 0.5rem;
         }
 
         .slide-content li {
             margin-bottom: 0.75rem;
             position: relative;
             padding-left: 1rem;
-            color: #4e342e; /* Very Dark Brown */
+            color: #4e342e;
+            line-height: 1.5;
         }
 
         .slide-content li::before {
             content: "•";
-            color: #8b6b4c; /* Brown bullet */
+            color: #8b6b4c;
             font-weight: bold;
             position: absolute;
             left: 0;
@@ -137,6 +156,7 @@
             font-size: 0.9em;
             color: #8b6b4c;
             font-weight: 600;
+            text-align: center;
         }
 
         .keyboard-hint {
@@ -159,7 +179,7 @@
         }
 
         .municipality-logo {
-            width: 80px; /* Προσαρμοσμένο πλάτος για να ταιριάζει */
+            width: 80px;
             height: auto;
             opacity: 0.9;
             display: block;
@@ -196,6 +216,14 @@
             border-radius: 8px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            flex: 1;
+            max-width: 48%;
         }
 
         .nav-button:not(:disabled):hover {
@@ -252,6 +280,9 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
         }
 
         .action-button:hover {
@@ -261,7 +292,7 @@
 
         /* Κουμπί επιστροφής στην κεντρική σελίδα */
         .central-return-button {
-            background-color: #9333ea; /* Μωβ χρώμα */
+            background-color: #9333ea;
             color: white;
             padding: 0.75rem 1.5rem;
             border-radius: 8px;
@@ -276,117 +307,65 @@
             width: 100%;
             max-width: 300px;
             margin: 0.5rem auto 0;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
         }
 
         .central-return-button:hover {
-            background-color: #7c3aed; /* Σκούρο μωβ */
+            background-color: #7c3aed;
             transform: translateY(-2px);
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
         }
 
-        /* Διάταξη για κινητά */
-        @media (max-width: 768px) {
-            .slide {
-                padding: 1.5rem;
-            }
-            .presentation-container {
-                height: 95vh;
-                min-height: 600px;
-            }
-            .slide-content h1 {
-                font-size: 1.5rem;
-            }
-            .municipality-logo-container {
-                top: 0.8rem;
-                right: 0.8rem;
-            }
-            .municipality-logo {
-                width: 60px; /* Ακόμη μικρότερο σε κινητά */
+        /* Navigation Container */
+        #navigation-buttons {
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border-top: 1px solid #e5e5e5;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .nav-buttons-container {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        /* Βελτιστοποίηση για Κινητά (Mobile First) */
+        @media (max-width: 767px) {
+            body {
+                padding: 5px;
             }
             
-            /* Βελτιστοποιημένη διάταξη για navigation footer */
-            #navigation-buttons {
+            .presentation-container {
+                height: 95vh;
+                max-height: 95vh;
+                border-radius: 12px;
+            }
+            
+            .slide {
                 padding: 1rem;
             }
             
-            .nav-buttons-container {
-                display: flex;
-                gap: 0.5rem;
-                width: 100%;
-                justify-content: space-between;
-                margin-bottom: 0.5rem;
+            .slide-content h1 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
             }
             
-            .nav-button {
-                padding: 0.7rem 1.2rem !important;
-                font-size: 0.9rem !important;
-                flex: 1;
-                max-width: 48%;
-            }
-            
-            .slide-counter {
-                order: 2;
-                text-align: center;
-                margin-top: 0.5rem;
-                font-size: 0.8rem;
-            }
-            
-            .two-images-container {
-                flex-direction: column;
-            }
-            
-            .two-images-container img {
-                max-width: 100%;
-            }
-            
-            .central-return-button {
-                padding: 0.6rem 1.2rem !important;
-                font-size: 0.9rem !important;
-                margin-top: 0.5rem;
-            }
-            
-            /* Βελτιστοποιημένα μεγέθη γραμματοσειράς για κινητά */
             .slide-content h2 {
                 font-size: 1.2rem;
+                margin-top: 1rem;
+                margin-bottom: 0.5rem;
             }
             
             .slide-content p, .slide-content li {
                 font-size: 0.9rem;
-            }
-            
-            .highlight-box, .conclusion-box {
-                padding: 1rem;
-            }
-            
-            .keyboard-hint {
-                font-size: 0.75rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .slide {
-                padding: 1rem;
-            }
-            
-            .slide-content h1 {
-                font-size: 1.3rem;
-            }
-            
-            .slide-content h2 {
-                font-size: 1.1rem;
-            }
-            
-            .slide-content p, .slide-content li {
-                font-size: 0.85rem;
-            }
-            
-            .nav-button {
-                padding: 0.6rem 1rem !important;
-                font-size: 0.8rem !important;
-            }
-            
-            #slide-8 h1 {
-                font-size: 1.8rem;
+                line-height: 1.4;
             }
             
             .municipality-logo-container {
@@ -399,50 +378,267 @@
                 width: 50px;
             }
             
-            .central-return-button {
-                padding: 0.5rem 1rem !important;
-                font-size: 0.8rem !important;
+            .nav-button {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
             }
             
-            .slide-counter {
-                font-size: 0.75rem;
+            .central-return-button {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .action-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
             }
             
             .highlight-box, .conclusion-box {
-                padding: 0.8rem;
+                padding: 1rem;
                 margin: 1rem 0;
+            }
+            
+            .two-images-container {
+                flex-direction: column;
+            }
+            
+            .two-images-container img {
+                max-width: 100%;
             }
             
             .keyboard-hint {
                 font-size: 0.7rem;
             }
+            
+            .slide-counter {
+                font-size: 0.8rem;
+            }
         }
 
-        @media (max-width: 360px) {
+        /* Βελτιστοποίηση για Tablet */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .presentation-container {
+                max-width: 90vw;
+                height: 90vh;
+            }
+            
             .slide {
-                padding: 0.8rem;
+                padding: 2rem;
             }
             
             .slide-content h1 {
-                font-size: 1.2rem;
+                font-size: 2.2rem;
             }
             
             .slide-content h2 {
-                font-size: 1rem;
+                font-size: 1.6rem;
             }
             
-            .nav-button {
-                padding: 0.5rem 0.8rem !important;
-                font-size: 0.75rem !important;
-            }
-            
-            .central-return-button {
-                padding: 0.5rem 0.8rem !important;
-                font-size: 0.75rem !important;
+            .slide-content p, .slide-content li {
+                font-size: 1.1rem;
+                line-height: 1.6;
             }
             
             .municipality-logo {
-                width: 40px;
+                width: 70px;
+            }
+            
+            .nav-button {
+                padding: 0.9rem 1.8rem;
+                font-size: 1.1rem;
+            }
+            
+            .central-return-button {
+                padding: 0.9rem 1.8rem;
+                font-size: 1.1rem;
+            }
+            
+            .action-button {
+                padding: 1.1rem 2.2rem;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Βελτιστοποίηση για Laptop */
+        @media (min-width: 1024px) and (max-width: 1199px) {
+            .presentation-container {
+                max-width: 95vw;
+                height: 85vh;
+            }
+            
+            .slide {
+                padding: 2.5rem;
+            }
+            
+            .slide-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .slide-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .slide-content p, .slide-content li {
+                font-size: 1.2rem;
+                line-height: 1.7;
+            }
+            
+            .municipality-logo {
+                width: 80px;
+            }
+            
+            .nav-button {
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
+            }
+            
+            .central-return-button {
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
+            }
+            
+            .action-button {
+                padding: 1.2rem 2.4rem;
+                font-size: 1.3rem;
+                max-width: 350px;
+            }
+        }
+
+        /* Βελτιστοποίηση για Smart TV και Μεγάλες Οθόνες */
+        @media (min-width: 1200px) {
+            .presentation-container {
+                max-width: 1400px;
+                height: 85vh;
+                max-height: 85vh;
+            }
+            
+            .slide {
+                padding: 3rem;
+            }
+            
+            .slide-content h1 {
+                font-size: 3rem;
+                margin-bottom: 2rem;
+            }
+            
+            .slide-content h2 {
+                font-size: 2.2rem;
+                margin-top: 2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .slide-content p, .slide-content li {
+                font-size: 1.4rem;
+                line-height: 1.8;
+            }
+            
+            .municipality-logo {
+                width: 100px;
+            }
+            
+            .nav-button {
+                padding: 1.2rem 2.5rem;
+                font-size: 1.3rem;
+                max-width: 45%;
+            }
+            
+            .central-return-button {
+                padding: 1.2rem 2.5rem;
+                font-size: 1.3rem;
+                max-width: 350px;
+            }
+            
+            .action-button {
+                padding: 1.3rem 2.6rem;
+                font-size: 1.4rem;
+                max-width: 400px;
+            }
+            
+            .highlight-box, .conclusion-box {
+                padding: 2rem;
+                margin: 2rem 0;
+            }
+            
+            .slide-counter {
+                font-size: 1.1rem;
+            }
+            
+            .keyboard-hint {
+                font-size: 1rem;
+            }
+        }
+
+        /* Βελτιστοποίηση για Πολύ Μεγάλες Οθόνες */
+        @media (min-width: 1600px) {
+            .presentation-container {
+                max-width: 1600px;
+            }
+            
+            .slide-content h1 {
+                font-size: 3.5rem;
+            }
+            
+            .slide-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .slide-content p, .slide-content li {
+                font-size: 1.6rem;
+            }
+            
+            .nav-button {
+                padding: 1.5rem 3rem;
+                font-size: 1.5rem;
+            }
+            
+            .central-return-button {
+                padding: 1.5rem 3rem;
+                font-size: 1.5rem;
+                max-width: 450px;
+            }
+            
+            .action-button {
+                padding: 1.5rem 3rem;
+                font-size: 1.6rem;
+                max-width: 450px;
+            }
+        }
+
+        /* Βελτιστοποίηση για Οριζόντια Κινητά */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .presentation-container {
+                height: 98vh;
+                max-height: 98vh;
+            }
+            
+            .slide {
+                padding: 1rem;
+            }
+            
+            .slide-content h1 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .slide-content h2 {
+                font-size: 1.2rem;
+                margin-top: 0.5rem;
+                margin-bottom: 0.3rem;
+            }
+            
+            .slide-content p, .slide-content li {
+                font-size: 0.8rem;
+                line-height: 1.2;
+                margin-bottom: 0.3rem;
+            }
+            
+            .highlight-box, .conclusion-box {
+                padding: 0.7rem;
+                margin: 0.7rem 0;
+            }
+            
+            #navigation-buttons {
+                padding: 0.5rem;
             }
         }
     </style>
@@ -467,13 +663,13 @@
             <!-- Slide 1: Τίτλος -->
             <div class="slide active hero-slide" id="slide-1">
                 <div class="slide-content">
-                    <h1 class="text-4xl font-extrabold">Τα Φάρσαλα και ο Αχιλλέας</h1>
-                    <h2 class="text-2xl font-semibold mt-4 text-gray-700">Όπου ο Μύθος Γίνεται Τόπος</h2>
-                    <p class="text-lg mt-8 leading-relaxed">Η γεωγραφική, ιστορική και πολιτισμική σύνδεση των Φαρσάλων με τον μυθικό ήρωα Αχιλλέα και την ομηρική Φθία.</p>
-                    <div class="highlight-box mt-12">
-                        <p class="text-2xl font-bold italic text-red-600">Ποια πόλη μπορεί να ισχυριστεί ότι είναι η πατρίδα του ισχυρότερου πολεμιστή όλων των εποχών;</p>
+                    <h1>Τα Φάρσαλα και ο Αχιλλέας</h1>
+                    <h2>Όπου ο Μύθος Γίνεται Τόπος</h2>
+                    <p>Η γεωγραφική, ιστορική και πολιτισμική σύνδεση των Φαρσάλων με τον μυθικό ήρωα Αχιλλέα και την ομηρική Φθία.</p>
+                    <div class="highlight-box">
+                        <p>Ποια πόλη μπορεί να ισχυριστεί ότι είναι η πατρίδα του ισχυρότερου πολεμιστή όλων των εποχών;</p>
                     </div>
-                    <div class="keyboard-hint mt-8">
+                    <div class="keyboard-hint">
                         <i class="fas fa-info-circle"></i> Χρησιμοποιήστε τα βέλη για πλοήγηση
                     </div>
                 </div>
@@ -482,12 +678,12 @@
             <!-- Slide 2: Η Ταυτότητα της Πόλης -->
             <div class="slide" id="slide-2">
                 <div class="slide-content">
-                    <h1 class="text-3xl font-bold">Η Ταυτότητα της Πόλης</h1>
-                    <p class="text-lg">Η πόλη των Φαρσάλων στη Θεσσαλία προβάλλει έντονα την ταυτότητά της ως η συνέχεια της ομηρικής Φθίας, της γενέτειρας του Αχιλλέα.</p>
+                    <h1>Η Ταυτότητα της Πόλης</h1>
+                    <p>Η πόλη των Φαρσάλων στη Θεσσαλία προβάλλει έντονα την ταυτότητά της ως η συνέχεια της ομηρικής Φθίας, της γενέτειρας του Αχιλλέα.</p>
 
-                    <div class="highlight-box mt-6">
-                        <h2 class="text-xl font-semibold">Ο Ήρωας και ο Στρατός του:</h2>
-                        <ul class="text-lg space-y-2">
+                    <div class="highlight-box">
+                        <h2>Ο Ήρωας και ο Στρατός του:</h2>
+                        <ul>
                             <li>Ο Αχιλλέας, γιος της Θέτιδας και του Πηλέα, ήταν ο ατρόμητος αρχηγός των Ελλήνων στον Τρωικό Πόλεμο.</li>
                             <li>Ο στρατός του, οι φημισμένοι <strong>Μυρμιδόνες</strong>, συνδέονται από την παράδοση με τα μυρμήγκια (μύρμηκες).</li>
                             <li>Σήμερα, στην είσοδο της πόλης, υπάρχει ένα γλυπτό μυρμηγκιού που κρατά δόρυ και ασπίδα, τιμώντας αυτή την ηρωική καταγωγή.</li>
@@ -505,9 +701,9 @@
             <!-- Slide 3: Η Γεωγραφία του Βασιλείου -->
             <div class="slide" id="slide-3">
                 <div class="slide-content">
-                    <h1 class="text-3xl font-bold">Η Γεωγραφία του Βασιλείου</h1>
-                    <div class="highlight-box mt-4">
-                        <ul class="text-lg space-y-3">
+                    <h1>Η Γεωγραφία του Βασιλείου</h1>
+                    <div class="highlight-box">
+                        <ul>
                             <li>Η ομηρική Φθία δεν ήταν αρχικά μία μόνο πόλη, αλλά μια εκτεταμένη επικράτεια, ένα ολόκληρο βασίλειο των Αχαιών.</li>
                             <li>Το βασίλειο του Αχιλλέα εκτεινόταν από τη Νέα Αγχίαλο μέχρι τα Φάρσαλα και τη Λαμία.</li>
                             <li>Η χώρα των Μυρμιδόνων είχε ως όρια τα Φάρσαλα και τον ποταμό <strong>Σπερχειό</strong>.</li>
@@ -521,16 +717,16 @@
             <!-- Slide 4: Η Ιστορική Διεκδίκηση -->
             <div class="slide" id="slide-4">
                 <div class="slide-content">
-                    <h1 class="text-3xl font-bold">Η Ιστορική Διεκδίκηση: Γιατί τα Φάρσαλα;</h1>
-                    <div class="highlight-box mt-4">
-                        <ol class="text-lg space-y-3">
+                    <h1>Η Ιστορική Διεκδίκηση: Γιατί τα Φάρσαλα;</h1>
+                    <div class="highlight-box">
+                        <ol>
                             <li><strong>Πρώτες Πηγές:</strong> Ο ιστορικός <strong>Φερεκύδης</strong> (6ος αιώνας π.Χ.) ήταν ο πρώτος που ταύτισε την ομηρική Φθία με την πόλη Φάρσαλο.</li>
                             <li><strong>Η Μεγάλη Μαρτυρία:</strong> Ο τραγωδός <strong>Ευριπίδης</strong> (5ος αιώνας π.Χ.) στην τραγωδία του <em>Ανδρομάχη</em> αναφέρει ρητά τα Φάρσαλα ως Φθία.</li>
                             <li><strong>Τοπική Λατρεία:</strong> Λατρευόταν η μητέρα του ήρωα, η Νηρηίδα <strong>Θέτιδα</strong>, καθώς και ο δάσκαλός του, ο <strong>Κένταυρος Χείρωνας</strong>.</li>
                         </ol>
                     </div>
-                    <div class="conclusion-box mt-6">
-                        <p class="font-semibold">Η Φάρσαλος υπήρξε το ισχυρότερο κέντρο στην ευρύτερη περιοχή της Φθίας κατά την Κλασική Εποχή και υιοθέτησε τη μυθική κληρονομιά.</p>
+                    <div class="conclusion-box">
+                        <p>Η Φάρσαλος υπήρξε το ισχυρότερο κέντρο στην ευρύτερη περιοχή της Φθίας κατά την Κλασική Εποχή και υιοθέτησε τη μυθική κληρονομιά.</p>
                     </div>
                 </div>
             </div>
@@ -538,21 +734,21 @@
             <!-- Slide 5: Αρχαιολογική Τεκμηρίωση -->
             <div class="slide" id="slide-5">
                 <div class="slide-content">
-                    <h1 class="text-3xl font-bold">Αρχαιολογική Τεκμηρίωση: Η Πίστη των Αρχαίων</h1>
-                    <div class="highlight-box mt-4">
-                        <h2 class="text-xl font-semibold">Μυκηναϊκή Παρουσία:</h2>
-                        <p class="text-lg">Στο Δυτικό Νεκροταφείο βρέθηκε ένας <strong>Μυκηναϊκός θαλαμοειδής τάφος</strong>, επιβεβαιώνοντας αχαϊκό πληθυσμό την εποχή του Τρωικού Πολέμου.</p>
+                    <h1>Αρχαιολογική Τεκμηρίωση: Η Πίστη των Αρχαίων</h1>
+                    <div class="highlight-box">
+                        <h2>Μυκηναϊκή Παρουσία:</h2>
+                        <p>Στο Δυτικό Νεκροταφείο βρέθηκε ένας <strong>Μυκηναϊκός θαλαμοειδής τάφος</strong>, επιβεβαιώνοντας αχαϊκό πληθυσμό την εποχή του Τρωικού Πολέμου.</p>
                     </div>
-                    <div class="highlight-box mt-4">
-                        <h2 class="text-xl font-semibold">Ηρωική Συνείδηση (6ος-5ος αι. π.Χ.):</h2>
-                        <ul class="text-lg space-y-2">
-                            <li>Βρέθηκε Αρχαϊκός θολωτός τάφος με κτέρισμα έναν σημαντικό, <strong>μελανόμορφο κρατήρα του ζωγράφου Εξηκία</strong>.</li>
+                    <div class="highlight-box">
+                        <h2>Ηρωική Συνείδηση (6ος-5ος αι. π.Χ.):</h2>
+                        <ul>
+                            <li>Βρέθηκε Αρχαϊκός θολωτός τάφος με κτέρισμα έναν πανάκριβο, <strong>μελανόμορφο κρατήρα του ζωγράφου Εξηκία</strong>.</li>
                             <li>Η αναβίωση των μυκηναϊκών ταφικών εθίμων και το εύρημα δείχνουν ότι οι κάτοικοι θεωρούσαν εαυτούς <strong>απογόνους του Αχιλλέα</strong>.</li>
                         </ul>
                     </div>
-                    <div class="highlight-box mt-4">
-                        <h2 class="text-xl font-semibold">Η Ακρόπολη:</h2>
-                        <p class="text-lg">Στον λόφο του <strong>Προφήτη Ηλία (Αϊ Λιάς)</strong> βρίσκονται τα ερείπια της αρχαίας Ακρόπολης, ενός φυσικού οχυρού που συνδέεται με την υπόθεση ότι εκεί βρισκόταν το ανάκτορο του μυθικού ήρωα.</p>
+                    <div class="highlight-box">
+                        <h2>Η Ακρόπολη:</h2>
+                        <p>Στον λόφο του <strong>Προφήτη Ηλία (Αϊ Λιάς)</strong> βρίσκονται τα ερείπια της αρχαίας Ακρόπολης, ενός φυσικού οχυρού που συνδέεται με την υπόθεση ότι εκεί βρισκόταν το ανάκτορο του μυθικού ήρωα.</p>
                     </div>
                     
                     <!-- Εικόνα ακρόπολης -->
@@ -566,17 +762,17 @@
             <!-- Slide 6: Η Κληρονομιά Σήμερα -->
             <div class="slide" id="slide-6">
                 <div class="slide-content">
-                    <h1 class="text-3xl font-bold">Η Κληρονομιά Σήμερα 🏛️</h1>
-                    <div class="highlight-box mt-4">
-                        <h2 class="text-xl font-semibold">Μνημεία:</h2>
-                        <ul class="text-lg space-y-2">
+                    <h1>Η Κληρονομιά Σήμερα 🏛️</h1>
+                    <div class="highlight-box">
+                        <h2>Μνημεία:</h2>
+                        <ul>
                             <li>Υπάρχει το άγαλμα του Αχιλλέα στην πλατεία.</li>
                             <li>Το άγαλμα της μητέρας του, της Θέτιδας, στις πηγές του Απιδανού, την απεικονίζει να κρατά τον βρέφος Αχιλλέα από την ευαίσθητη φτέρνα.</li>
                         </ul>
                     </div>
-                    <div class="highlight-box mt-4">
-                        <h2 class="text-xl font-semibold">Το Όραμα του Μέλλοντος (Αχίλλειο Κέντρο):</h2>
-                        <ul class="text-lg space-y-2">
+                    <div class="highlight-box">
+                        <h2>Το Όραμα του Μέλλοντος (Αχίλλειο Κέντρο):</h2>
+                        <ul>
                             <li>Ο Δήμος έχει σχεδιάσει τη δημιουργία του <strong>«Αχίλλειου Κέντρου Ιστορίας, Μυθολογίας και Πολιτισμού»</strong>.</li>
                             <li>Θα λειτουργεί ως εκθεσιακός χώρος <strong>εικονικής πραγματικότητας (Virtual Reality)</strong>, επιτρέποντας στους επισκέπτες να «βυθιστούν» σε ψηφιακές αναπαραστάσεις της Ομηρικής Φθίας.</li>
                         </ul>
@@ -596,10 +792,10 @@
 
             <!-- Slide 7: Συμπέρασμα -->
             <div class="slide" id="slide-7">
-                <div class="slide-content flex flex-col justify-center h-full">
-                    <h1 class="text-4xl font-extrabold text-center">Συμπέρασμα 🌟</h1>
-                    <div class="conclusion-box mt-8">
-                        <p class="text-2xl font-bold text-center leading-snug">
+                <div class="slide-content">
+                    <h1>Συμπέρασμα 🌟</h1>
+                    <div class="conclusion-box">
+                        <p>
                             Τα Φάρσαλα, λοιπόν, δεν είναι μόνο η πατρίδα του φημισμένου <strong>χαλβά</strong>, αλλά ένας τόπος όπου η ιστορία εκτείνεται 9.000 χρόνια πίσω και ο μύθος του μεγαλύτερου Αχαιού πολεμιστή παραμένει ζωντανός.
                         </p>
                     </div>
@@ -609,40 +805,40 @@
             <!-- Slide 8: Τελική Σελίδα (Ευχαριστήρια & Δράσεις) -->
             <div class="slide" id="slide-8">
                 <div class="slide-content final-page">
-                    <h1 class="text-5xl font-extrabold mb-10">Σας ευχαριστούμε που παρακολουθήσατε την παρουσίαση</h1>
+                    <h1>Σας ευχαριστούμε που παρακολουθήσατε την παρουσίαση</h1>
                     
                     <!-- ΚΕΝΤΡΑΡΙΣΜΕΝΑ ΚΟΥΜΠΙΑ -->
                     <div class="flex flex-col items-center justify-center w-full max-w-sm mx-auto space-y-4">
                         <!-- Σύνδεσμος για το Quiz -->
-                        <a href="https://conchr.github.io/Achilles/" target="_blank" class="action-button bg-indigo-600 text-white hover:bg-indigo-700 w-full">
+                        <a href="https://conchr.github.io/Achilles/" target="_blank" class="action-button bg-indigo-600 text-white hover:bg-indigo-700">
                             <i class="fas fa-question-circle"></i> Θέλετε να κάνετε το Quiz γνώσεων;
                         </a>
                         
                         <!-- Κουμπί επανεκκίνησης της παρουσίασης -->
-                        <button onclick="restartPresentation()" class="action-button bg-green-500 text-white hover:bg-green-600 w-full">
+                        <button onclick="restartPresentation()" class="action-button bg-green-500 text-white hover:bg-green-600">
                             <i class="fas fa-redo"></i> Δείτε ξανά την παρουσίαση
                         </button>
                         
                         <!-- Κουμπί επιστροφής στην κεντρική σελίδα -->
-                        <a href="https://conchr.github.io/Farsala-Center-Page/" class="central-return-button w-full">
+                        <a href="https://conchr.github.io/Farsala-Center-Page/" class="central-return-button">
                             <i class="fas fa-home"></i> Επιστροφή στην Κεντρική Σελίδα
                         </a>
                     </div>
                     
-                    <div class="keyboard-hint mt-8">
+                    <div class="keyboard-hint">
                         <i class="fas fa-info-circle"></i> Πατήστε το βέλος αριστερά για να επιστρέψετε στην αρχή
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Κουμπιά Πλοήγησης -->
-        <div id="navigation-buttons" class="flex flex-col p-4 bg-gray-100 border-t border-gray-200">
+        <!-- Κουμπιά Πλοήγησης - ΠΑΝΤΑ ΣΤΗΝ ΙΔΙΑ ΣΕΙΡΑ -->
+        <div id="navigation-buttons">
             <div class="nav-buttons-container">
-                <button id="prev-btn" onclick="prevSlide()" disabled class="nav-button bg-blue-500 text-white font-semibold hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2">
+                <button id="prev-btn" onclick="prevSlide()" disabled class="nav-button bg-blue-500 text-white font-semibold hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed">
                     <i class="fas fa-arrow-left"></i> Προηγούμενη
                 </button>
-                <button id="next-btn" onclick="nextSlide()" class="nav-button bg-blue-500 text-white font-semibold hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2">
+                <button id="next-btn" onclick="nextSlide()" class="nav-button bg-blue-500 text-white font-semibold hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed">
                     Επόμενη <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
@@ -652,7 +848,7 @@
                 <i class="fas fa-home"></i> Επιστροφή στην Κεντρική Σελίδα
             </a>
             
-            <div class="slide-counter text-center mt-2" id="slide-counter">Σελίδα 1 από 8</div>
+            <div class="slide-counter" id="slide-counter">Σελίδα 1 από 8</div>
         </div>
     </div>
 
@@ -714,9 +910,9 @@
         function updateButtons() {
             // Στην τελική σελίδα, κρύβουμε το κάτω τμήμα πλοήγησης
             if (currentSlideIndex === totalSlides - 1) {
-                navButtonsContainer.classList.add('hidden');
+                navButtonsContainer.style.display = 'none';
             } else {
-                navButtonsContainer.classList.remove('hidden');
+                navButtonsContainer.style.display = 'flex';
                 
                 // Κουμπί Πίσω (Πρώτη διαφάνεια)
                 prevBtn.disabled = currentSlideIndex === 0;
@@ -774,6 +970,33 @@
              // Εξασφαλίζει ότι η αρχική κατάσταση έχει ρυθμιστεί σωστά
              showSlide(currentSlideIndex);
         };
+
+        // Βελτιστοποίηση για touch devices
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            
+            if (touchEndX < touchStartX - swipeThreshold) {
+                // Swipe left - next slide
+                nextSlide();
+            }
+            
+            if (touchEndX > touchStartX + swipeThreshold) {
+                // Swipe right - previous slide
+                prevSlide();
+            }
+        }
     </script>
 </body>
 </html>
