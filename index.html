@@ -15,6 +15,11 @@
             box-sizing: border-box;
         }
         
+        :root {
+            --base-font-size: 16px;
+            --scale-factor: 1;
+        }
+        
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background: linear-gradient(135deg, #e8dfca 0%, #d9c9a9 100%);
@@ -25,6 +30,7 @@
             margin: 0;
             padding: 10px;
             overflow: hidden;
+            font-size: calc(var(--base-font-size) * var(--scale-factor));
         }
 
         .presentation-container {
@@ -123,6 +129,7 @@
             display: flex;
             flex-direction: column;
             padding: 1rem;
+            overflow: auto;
         }
 
         .text-content {
@@ -130,7 +137,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            overflow: hidden;
+            overflow: auto;
         }
 
         .image-slide {
@@ -138,6 +145,7 @@
             display: flex;
             flex-direction: column;
             padding: 1rem;
+            overflow: auto;
         }
 
         .image-container {
@@ -147,7 +155,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            overflow: auto;
         }
 
         .image-title {
@@ -172,6 +180,12 @@
             transform: scale(1.02);
         }
 
+        /* Ειδικό στυλ για τη σελίδα 3 - μικρότερη εικόνα */
+        .slide-3-image {
+            max-height: 60vh !important;
+            max-width: 80% !important;
+        }
+
         .two-images {
             display: flex;
             gap: 1rem;
@@ -179,6 +193,7 @@
             height: 70vh;
             justify-content: center;
             align-items: center;
+            overflow: auto;
         }
 
         .image-column {
@@ -187,6 +202,7 @@
             flex-direction: column;
             align-items: center;
             height: 100%;
+            overflow: auto;
         }
 
         .image-column .responsive-image {
@@ -325,14 +341,17 @@
         }
 
         /* Special boxes */
-        .highlight-box {
-            background: linear-gradient(135deg, #fff9e6 0%, #fff0cc 100%);
-            border-left: 4px solid #d4af37;
+        .highlight-box, .conclusion-box {
             padding: 1.5rem;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             margin: 1rem 0;
             transition: transform 0.3s ease;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff0cc 100%);
+            border-left: 4px solid #d4af37;
         }
 
         .highlight-box:hover {
@@ -342,11 +361,6 @@
         .conclusion-box {
             background: linear-gradient(135deg, #ffe6e6 0%, #ffcccc 100%);
             border-left: 4px solid #e53e3e;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            margin: 1rem 0;
-            transition: transform 0.3s ease;
         }
 
         .conclusion-box:hover {
@@ -403,8 +417,51 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
+        /* Scrollbar styling */
+        .content-scaling::-webkit-scrollbar,
+        .text-content::-webkit-scrollbar,
+        .image-slide::-webkit-scrollbar,
+        .image-container::-webkit-scrollbar,
+        .two-images::-webkit-scrollbar,
+        .image-column::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .content-scaling::-webkit-scrollbar-track,
+        .text-content::-webkit-scrollbar-track,
+        .image-slide::-webkit-scrollbar-track,
+        .image-container::-webkit-scrollbar-track,
+        .two-images::-webkit-scrollbar-track,
+        .image-column::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .content-scaling::-webkit-scrollbar-thumb,
+        .text-content::-webkit-scrollbar-thumb,
+        .image-slide::-webkit-scrollbar-thumb,
+        .image-container::-webkit-scrollbar-thumb,
+        .two-images::-webkit-scrollbar-thumb,
+        .image-column::-webkit-scrollbar-thumb {
+            background: #8b6b4c;
+            border-radius: 4px;
+        }
+
+        .content-scaling::-webkit-scrollbar-thumb:hover,
+        .text-content::-webkit-scrollbar-thumb:hover,
+        .image-slide::-webkit-scrollbar-thumb:hover,
+        .image-container::-webkit-scrollbar-thumb:hover,
+        .two-images::-webkit-scrollbar-thumb:hover,
+        .image-column::-webkit-scrollbar-thumb:hover {
+            background: #6d533a;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
+            :root {
+                --base-font-size: 14px;
+            }
+            
             .slide {
                 padding: 1rem;
             }
@@ -433,6 +490,11 @@
                 height: 60vh;
             }
             
+            .slide-3-image {
+                max-height: 50vh !important;
+                max-width: 90% !important;
+            }
+            
             .slide-counter,
             .municipality-text {
                 font-size: 0.8rem;
@@ -444,6 +506,10 @@
         }
 
         @media (max-width: 480px) {
+            :root {
+                --base-font-size: 12px;
+            }
+            
             .municipality-logo {
                 width: 50px;
             }
@@ -461,6 +527,11 @@
             .image-container,
             .two-images {
                 height: 50vh;
+            }
+            
+            .slide-3-image {
+                max-height: 45vh !important;
+                max-width: 95% !important;
             }
             
             .two-images {
@@ -484,6 +555,10 @@
         }
 
         @media (min-width: 1200px) {
+            :root {
+                --base-font-size: 18px;
+            }
+            
             .municipality-logo {
                 width: 100px;
             }
@@ -512,6 +587,36 @@
             
             .thank-you-text {
                 font-size: 3rem;
+            }
+        }
+
+        @media (min-width: 1920px) {
+            :root {
+                --base-font-size: 20px;
+            }
+            
+            .thank-you-text {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (min-width: 2560px) {
+            :root {
+                --base-font-size: 24px;
+            }
+            
+            .thank-you-text {
+                font-size: 4rem;
+            }
+        }
+
+        @media (min-width: 3840px) {
+            :root {
+                --base-font-size: 28px;
+            }
+            
+            .thank-you-text {
+                font-size: 5rem;
             }
         }
     </style>
@@ -591,7 +696,7 @@
                             </div>
                             <img src="https://raw.githubusercontent.com/conchr/Achilles-Presentation/main/S-Myrmigi_farsala-(1).jpg" 
                                  alt="Γλυπτό μυρμηγκιού στα Φάρσαλα" 
-                                 class="responsive-image"
+                                 class="responsive-image slide-3-image"
                                  loading="lazy"
                                  onerror="this.onerror=null; this.src='https://placehold.co/800x600/d4c9b1/8b6b4c?text=Γλυπτό+Μυρμηγκιού'">
                         </div>
@@ -948,6 +1053,22 @@
             if (touchEndX > touchStartX + swipeThreshold) prevSlide();
         }, false);
 
+        // Dynamic font scaling based on screen size
+        function updateFontScaling() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const diagonal = Math.sqrt(width * width + height * height);
+            
+            // Base diagonal for standard 1080p screen
+            const baseDiagonal = Math.sqrt(1920 * 1920 + 1080 * 1080);
+            
+            // Calculate scale factor
+            const scaleFactor = Math.min(1.5, Math.max(0.8, diagonal / baseDiagonal));
+            
+            // Apply scale factor to CSS variable
+            document.documentElement.style.setProperty('--scale-factor', scaleFactor);
+        }
+
         // Preload images for better performance
         function preloadImages() {
             const images = document.querySelectorAll('img[data-src]');
@@ -960,7 +1081,11 @@
         window.onload = () => {
             showSlide(currentSlideIndex);
             preloadImages();
+            updateFontScaling();
         };
+
+        // Update font scaling on resize
+        window.addEventListener('resize', updateFontScaling);
     </script>
 </body>
 </html>
