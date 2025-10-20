@@ -64,7 +64,7 @@
         .progress-bar {
             height: 100%;
             background: linear-gradient(90deg, #8b6b4c, #a88c6f);
-            width: 9.09%;
+            width: 7.69%;
             transition: width 0.5s ease;
             border-radius: 0 4px 4px 0;
         }
@@ -121,6 +121,8 @@
             margin-bottom: 1.5rem;
             padding-bottom: 0.5rem;
             border-bottom: 3px solid #8b6b4c;
+            padding-right: 100px; /* Χώρος για το λογότυπο */
+            padding-left: 50px; /* Χώρος για τα controls μουσικής */
         }
 
         /* Content scaling για διαφορετικές οθόνες */
@@ -155,7 +157,6 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: auto;
         }
 
         .image-title {
@@ -182,8 +183,16 @@
 
         /* Ειδικό στυλ για τη σελίδα 3 - μικρότερη εικόνα */
         .slide-3-image {
+            max-height: 50vh !important;
+            max-width: 70% !important;
+        }
+
+        /* Ειδικό στυλ για τη νέα σελίδα 6 */
+        .krater-image {
             max-height: 60vh !important;
             max-width: 80% !important;
+            display: block;
+            margin: 0 auto;
         }
 
         .two-images {
@@ -193,7 +202,6 @@
             height: 70vh;
             justify-content: center;
             align-items: center;
-            overflow: auto;
         }
 
         .image-column {
@@ -202,7 +210,6 @@
             flex-direction: column;
             align-items: center;
             height: 100%;
-            overflow: auto;
         }
 
         .image-column .responsive-image {
@@ -305,6 +312,7 @@
             justify-content: center;
             width: 100%;
             margin-top: 0.5rem;
+            margin-bottom: 1.5rem; /* Χώρος για το κείμενο Δήμου */
         }
 
         .central-return-button {
@@ -420,40 +428,80 @@
         /* Scrollbar styling */
         .content-scaling::-webkit-scrollbar,
         .text-content::-webkit-scrollbar,
-        .image-slide::-webkit-scrollbar,
-        .image-container::-webkit-scrollbar,
-        .two-images::-webkit-scrollbar,
-        .image-column::-webkit-scrollbar {
+        .image-slide::-webkit-scrollbar {
             width: 8px;
         }
 
         .content-scaling::-webkit-scrollbar-track,
         .text-content::-webkit-scrollbar-track,
-        .image-slide::-webkit-scrollbar-track,
-        .image-container::-webkit-scrollbar-track,
-        .two-images::-webkit-scrollbar-track,
-        .image-column::-webkit-scrollbar-track {
+        .image-slide::-webkit-scrollbar-track {
             background: #f1f1f1;
             border-radius: 4px;
         }
 
         .content-scaling::-webkit-scrollbar-thumb,
         .text-content::-webkit-scrollbar-thumb,
-        .image-slide::-webkit-scrollbar-thumb,
-        .image-container::-webkit-scrollbar-thumb,
-        .two-images::-webkit-scrollbar-thumb,
-        .image-column::-webkit-scrollbar-thumb {
+        .image-slide::-webkit-scrollbar-thumb {
             background: #8b6b4c;
             border-radius: 4px;
         }
 
         .content-scaling::-webkit-scrollbar-thumb:hover,
         .text-content::-webkit-scrollbar-thumb:hover,
-        .image-slide::-webkit-scrollbar-thumb:hover,
-        .image-container::-webkit-scrollbar-thumb:hover,
-        .two-images::-webkit-scrollbar-thumb:hover,
-        .image-column::-webkit-scrollbar-thumb:hover {
+        .image-slide::-webkit-scrollbar-thumb:hover {
             background: #6d533a;
+        }
+
+        /* Music controls */
+        .music-controls {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            padding: 5px 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .music-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #8b6b4c;
+        }
+
+        /* Ειδικό στυλ για τη σελίδα 8 - Θολωτός Τάφος */
+        .tholos-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .tholos-images {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .tholos-image-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .tholos-image-column .responsive-image {
+            max-width: 100%;
+            max-height: 45vh;
         }
 
         /* Responsive Design */
@@ -464,6 +512,11 @@
             
             .slide {
                 padding: 1rem;
+            }
+            
+            .slide-title {
+                padding-right: 70px;
+                padding-left: 40px;
             }
             
             .municipality-logo {
@@ -491,8 +544,25 @@
             }
             
             .slide-3-image {
+                max-height: 40vh !important;
+                max-width: 80% !important;
+            }
+            
+            .krater-image {
                 max-height: 50vh !important;
-                max-width: 90% !important;
+                max-width: 85% !important;
+            }
+            
+            .tholos-images {
+                flex-direction: column;
+            }
+            
+            .tholos-image-column {
+                width: 100%;
+            }
+            
+            .tholos-image-column .responsive-image {
+                max-height: 35vh;
             }
             
             .slide-counter,
@@ -508,6 +578,11 @@
         @media (max-width: 480px) {
             :root {
                 --base-font-size: 12px;
+            }
+            
+            .slide-title {
+                padding-right: 60px;
+                padding-left: 35px;
             }
             
             .municipality-logo {
@@ -530,8 +605,13 @@
             }
             
             .slide-3-image {
+                max-height: 35vh !important;
+                max-width: 85% !important;
+            }
+            
+            .krater-image {
                 max-height: 45vh !important;
-                max-width: 95% !important;
+                max-width: 90% !important;
             }
             
             .two-images {
@@ -542,6 +622,18 @@
             .image-column {
                 width: 100%;
                 height: 45vh;
+            }
+            
+            .tholos-images {
+                flex-direction: column;
+            }
+            
+            .tholos-image-column {
+                width: 100%;
+            }
+            
+            .tholos-image-column .responsive-image {
+                max-height: 30vh;
             }
             
             .slide-counter,
@@ -557,6 +649,11 @@
         @media (min-width: 1200px) {
             :root {
                 --base-font-size: 18px;
+            }
+            
+            .slide-title {
+                padding-right: 120px;
+                padding-left: 60px;
             }
             
             .municipality-logo {
@@ -627,6 +724,17 @@
         <!-- Progress Bar -->
         <div class="progress-container">
             <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <!-- Music Controls -->
+        <div class="music-controls">
+            <button id="play-music" class="music-button">
+                <i class="fas fa-play"></i>
+            </button>
+            <button id="pause-music" class="music-button">
+                <i class="fas fa-pause"></i>
+            </button>
+            <span class="text-sm text-gray-700">Μουσική</span>
         </div>
 
         <div class="slide-wrapper">
@@ -717,7 +825,7 @@
                                     <li>Η ομηρική Φθία δεν ήταν αρχικά μία μόνο πόλη, αλλά μια εκτεταμένη επικράτεια, ένα ολόκληρο βασίλειο των Αχαιών.</li>
                                     <li>Το βασίλειο του Αχιλλέα εκτεινόταν από τη Νέα Αγχίαλο μέχρι τα Φάρσαλα και τη Λαμία.</li>
                                     <li>Η χώρα των Μυρμιδόνων είχε ως όρια τα Φάρσαλα και τον ποταμό <strong>Σπερχειό</strong>.</li>
-                                    <li>Η περιοχή των Φαρσάλων διασχίζεται από τον ποταμό <strong>Ενιπέα</strong>.</li>
+                                    <li>Η περιοχή των Φαρσάλων διασχίζεται από τον ποταμό <strong>Ενιпέα</strong>.</li>
                                     <li>Η ακριβής πρωτεύουσα (άστυ) της ομηρικής Φθίας δεν έχει εντοπιστεί επιστημονικά με βεβαιότητα.</li>
                                 </ul>
                             </div>
@@ -749,8 +857,28 @@
                 </div>
             </div>
 
-            <!-- Slide 6: Αρχαιολογική Τεκμηρίωση -->
-            <div class="slide" id="slide-6" role="region" aria-label="Αρχαιολογική Τεκμηρίωση">
+            <!-- Σελίδα 6: Αττικός μελανόμορφος καλυκωτός κρατήρας -->
+            <div class="slide" id="slide-6" role="region" aria-label="Αττικός μελανόμορφος καλυκωτός κρατήρας">
+                <div class="slide-content">
+                    <div class="slide-title">
+                        <h1 class="text-3xl font-bold">Αττικός μελανόμορφος καλυκωτός κρατήρας</h1>
+                    </div>
+                    <div class="content-scaling">
+                        <div class="text-content">
+                            <p class="text-lg mb-6">Ο Εξικίας αναπαριστά μία Σκηνή «ομηρικής» μάχης. Δύο αντίπαλες ομάδες ή φάλαγγες πολεμιστών μάχονται πάνω από το άψυχο σώμα ενός συμπολεμιστή τους, πιθανόν του Πατρόκλου. Χρονολογείται γύρω στο 530 π.Χ.</p>
+                            
+                            <img src="https://raw.githubusercontent.com/conchr/Achilles-Presentation/main/krater.png" 
+                                 alt="Αττικός μελανόμορφος καλυκωτός κρατήρας" 
+                                 class="responsive-image krater-image"
+                                 loading="lazy"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/800x600/d4c9b1/8b6b4c?text=Κρατήρας'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Αρχαιολογική Τεκμηρίωση -->
+            <div class="slide" id="slide-7" role="region" aria-label="Αρχαιολογική Τεκμηρίωση">
                 <div class="slide-content">
                     <div class="slide-title">
                         <h1 class="text-3xl font-bold">Αρχαιολογική Τεκμηρίωση: Η Πίστη των Αρχαίων</h1>
@@ -777,8 +905,39 @@
                 </div>
             </div>
 
-            <!-- Slide 7: Εικόνα Ακρόπολης -->
-            <div class="slide" id="slide-7" role="region" aria-label="Ακρόπολη Φαρσάλων">
+            <!-- Σελίδα 8: ΘΟΛΩΤΟΣ ΤΑΦΟΣ ΤΩΝ ΦΑΡΣΑΛΩΝ -->
+            <div class="slide" id="slide-8" role="region" aria-label="Θολωτός Τάφος Φαρσάλων">
+                <div class="slide-content">
+                    <div class="slide-title">
+                        <h1 class="text-3xl font-bold">ΘΟΛΩΤΟΣ ΤΑΦΟΣ ΤΩΝ ΦΑΡΣΑΛΩΝ</h1>
+                    </div>
+                    <div class="content-scaling">
+                        <div class="tholos-content">
+                            <p class="text-lg mb-6">Ο τάφος φέρεται να κατασκευάστηκε στα τέλη του 6ου αιώνα π.Χ. στους υστεροαρχαικούς χρόνους και συνέχισε να χρησιμοποιείται έως την ελληνιστική εποχή.</p>
+                            
+                            <div class="tholos-images">
+                                <div class="tholos-image-column">
+                                    <img src="https://raw.githubusercontent.com/conchr/Achilles-Presentation/main/-%CE%A4%CE%91%CE%A6%CE%9F%CE%A3-%CE%A6%CE%91%CE%A1%CE%A3%CE%91%CE%9B%CE%A9%CE%9D-2-of-7-2-e1590652832167.jpg" 
+                                         alt="Θολωτός Τάφος Φαρσάλων 1" 
+                                         class="responsive-image"
+                                         loading="lazy"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/400x300/d4c9b1/8b6b4c?text=Τάφος+1'">
+                                </div>
+                                <div class="tholos-image-column">
+                                    <img src="https://raw.githubusercontent.com/conchr/Achilles-Presentation/main/-%CE%A4%CE%91%CE%A6%CE%9F%CE%A3-%CE%A6%CE%91%CE%A1%CE%A3%CE%91%CE%9B%CE%A9%CE%9D-4-of-7-2-1-e1590652846458.jpg" 
+                                         alt="Θολωτός Τάφος Φαρσάλων 2" 
+                                         class="responsive-image"
+                                         loading="lazy"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/400x300/d4c9b1/8b6b4c?text=Τάφος+2'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 9: Εικόνα Ακρόπολης -->
+            <div class="slide" id="slide-9" role="region" aria-label="Ακρόπολη Φαρσάλων">
                 <div class="slide-content">
                     <div class="slide-title">
                         <h1 class="text-3xl font-bold">Ακρόπολη Φαρσάλων</h1>
@@ -798,8 +957,8 @@
                 </div>
             </div>
 
-            <!-- Slide 8: Η Κληρονομιά Σήμερα -->
-            <div class="slide" id="slide-8" role="region" aria-label="Η Κληρονομιά Σήμερα">
+            <!-- Slide 10: Η Κληρονομιά Σήμερα -->
+            <div class="slide" id="slide-10" role="region" aria-label="Η Κληρονομιά Σήμερα">
                 <div class="slide-content">
                     <div class="slide-title">
                         <h1 class="text-3xl font-bold">Η Κληρονομιά Σήμερα 🏛️</h1>
@@ -825,8 +984,8 @@
                 </div>
             </div>
 
-            <!-- Slide 9: Εικόνες Αχιλλέα και Θέτιδας -->
-            <div class="slide" id="slide-9" role="region" aria-label="Αγάλματα Φαρσάλων">
+            <!-- Slide 11: Εικόνες Αχιλλέα και Θέτιδας -->
+            <div class="slide" id="slide-11" role="region" aria-label="Αγάλματα Φαρσάλων">
                 <div class="slide-content">
                     <div class="slide-title">
                         <h1 class="text-3xl font-bold">Αγάλματα Φαρσάλων</h1>
@@ -858,8 +1017,8 @@
                 </div>
             </div>
 
-            <!-- Slide 10: Συμπέρασμα -->
-            <div class="slide" id="slide-10" role="region" aria-label="Συμπέρασμα">
+            <!-- Slide 12: Συμπέρασμα -->
+            <div class="slide" id="slide-12" role="region" aria-label="Συμπέρασμα">
                 <div class="slide-content">
                     <div class="slide-title">
                         <h1 class="text-4xl font-extrabold">Συμπέρασμα 🌟</h1>
@@ -876,8 +1035,8 @@
                 </div>
             </div>
 
-            <!-- Slide 11: Τελική Σελίδα -->
-            <div class="slide" id="slide-11" role="region" aria-label="Τελική Σελίδα">
+            <!-- Slide 13: Τελική Σελίδα -->
+            <div class="slide" id="slide-13" role="region" aria-label="Τελική Σελίδα">
                 <div class="slide-content">
                     <div class="slide-title">
                         <h1 class="text-5xl font-extrabold thank-you-text">Σας ευχαριστούμε που παρακολουθήσατε την παρουσίαση</h1>
@@ -886,7 +1045,7 @@
                         <div class="text-content">
                             
                             <div class="flex flex-col items-center justify-center w-full max-w-sm mx-auto space-y-4">
-                                <a href="https://conchr.github.io/Achilles/" target="_blank" class="action-button bg-indigo-600 text-white hover:bg-indigo-700">
+                                <a href="https://conchr.github.io/Achilles/" class="action-button bg-indigo-600 text-white hover:bg-indigo-700">
                                     <i class="fas fa-question-circle"></i> Θέλετε να κάνετε το Quiz γνώσεων;
                                 </a>
                                 
@@ -928,12 +1087,18 @@
             </div>
             
             <!-- Σελιδοδείκτης κάτω αριστερά -->
-            <div class="slide-counter" id="slide-counter">Σελίδα 1 από 11</div>
+            <div class="slide-counter" id="slide-counter">Σελίδα 1 από 13</div>
             
             <!-- Κείμενο Δήμου Φαρσάλων κάτω δεξιά -->
             <div class="municipality-text">Δήμος Φαρσάλων 2025</div>
         </div>
     </div>
+
+    <!-- Audio element for background music -->
+    <audio id="background-music" loop>
+        <source src="https://raw.githubusercontent.com/conchr/Achilles-Presentation/main/The%20Arrow%20of%20Eros%20loop2-01.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     <script>
         // JavaScript Logic
@@ -945,6 +1110,38 @@
         const navButtonsContainer = document.getElementById('navigation-buttons');
         const progressBar = document.getElementById('progress-bar');
         const slideCounter = document.getElementById('slide-counter');
+        
+        // Music elements
+        const backgroundMusic = document.getElementById('background-music');
+        const playMusicBtn = document.getElementById('play-music');
+        const pauseMusicBtn = document.getElementById('pause-music');
+
+        // Set music volume to 30%
+        backgroundMusic.volume = 0.3;
+
+        // Music control functions
+        function playMusic() {
+            backgroundMusic.play().catch(e => {
+                console.log("Audio play failed:", e);
+            });
+        }
+
+        function pauseMusic() {
+            backgroundMusic.pause();
+        }
+
+        // Event listeners for music controls
+        playMusicBtn.addEventListener('click', playMusic);
+        pauseMusicBtn.addEventListener('click', pauseMusic);
+
+        // Try to autoplay music when presentation starts
+        window.addEventListener('load', () => {
+            // Some browsers require user interaction for autoplay
+            // We'll try to play but it might be blocked
+            setTimeout(() => {
+                playMusic();
+            }, 1000);
+        });
 
         /**
          * Ενημερώνει τη γραμμή προόδου
