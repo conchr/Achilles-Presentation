@@ -122,7 +122,6 @@
             padding-bottom: 0.5rem;
             border-bottom: 3px solid #8b6b4c;
             padding-right: 100px; /* Χώρος για το λογότυπο */
-            padding-left: 50px; /* Χώρος για τα controls μουσικής */
         }
 
         /* Content scaling για διαφορετικές οθόνες */
@@ -452,29 +451,6 @@
             background: #6d533a;
         }
 
-        /* Music controls */
-        .music-controls {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            z-index: 10;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 8px;
-            padding: 5px 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .music-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            color: #8b6b4c;
-        }
-
         /* Ειδικό στυλ για τη σελίδα 8 - Θολωτός Τάφος */
         .tholos-content {
             display: flex;
@@ -516,7 +492,6 @@
             
             .slide-title {
                 padding-right: 70px;
-                padding-left: 40px;
             }
             
             .municipality-logo {
@@ -582,7 +557,6 @@
             
             .slide-title {
                 padding-right: 60px;
-                padding-left: 35px;
             }
             
             .municipality-logo {
@@ -653,7 +627,6 @@
             
             .slide-title {
                 padding-right: 120px;
-                padding-left: 60px;
             }
             
             .municipality-logo {
@@ -724,17 +697,6 @@
         <!-- Progress Bar -->
         <div class="progress-container">
             <div class="progress-bar" id="progress-bar"></div>
-        </div>
-
-        <!-- Music Controls -->
-        <div class="music-controls">
-            <button id="play-music" class="music-button">
-                <i class="fas fa-play"></i>
-            </button>
-            <button id="pause-music" class="music-button">
-                <i class="fas fa-pause"></i>
-            </button>
-            <span class="text-sm text-gray-700">Μουσική</span>
         </div>
 
         <div class="slide-wrapper">
@@ -1094,12 +1056,6 @@
         </div>
     </div>
 
-    <!-- Audio element for background music -->
-    <audio id="background-music" loop>
-        <source src="https://raw.githubusercontent.com/conchr/Achilles-Presentation/main/The%20Arrow%20of%20Eros%20loop2-01.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-
     <script>
         // JavaScript Logic
         let currentSlideIndex = 0;
@@ -1110,38 +1066,6 @@
         const navButtonsContainer = document.getElementById('navigation-buttons');
         const progressBar = document.getElementById('progress-bar');
         const slideCounter = document.getElementById('slide-counter');
-        
-        // Music elements
-        const backgroundMusic = document.getElementById('background-music');
-        const playMusicBtn = document.getElementById('play-music');
-        const pauseMusicBtn = document.getElementById('pause-music');
-
-        // Set music volume to 30%
-        backgroundMusic.volume = 0.3;
-
-        // Music control functions
-        function playMusic() {
-            backgroundMusic.play().catch(e => {
-                console.log("Audio play failed:", e);
-            });
-        }
-
-        function pauseMusic() {
-            backgroundMusic.pause();
-        }
-
-        // Event listeners for music controls
-        playMusicBtn.addEventListener('click', playMusic);
-        pauseMusicBtn.addEventListener('click', pauseMusic);
-
-        // Try to autoplay music when presentation starts
-        window.addEventListener('load', () => {
-            // Some browsers require user interaction for autoplay
-            // We'll try to play but it might be blocked
-            setTimeout(() => {
-                playMusic();
-            }, 1000);
-        });
 
         /**
          * Ενημερώνει τη γραμμή προόδου
