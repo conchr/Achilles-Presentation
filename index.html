@@ -85,7 +85,7 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.5s ease-in-out, transform 0.5s ease;
-            overflow: hidden;
+            overflow-y: auto; /* Αλλαγή: Scroll μόνο για το περιεχόμενο */
             display: flex;
             flex-direction: column;
             background-image: 
@@ -111,8 +111,7 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            height: 100%;
-            overflow: hidden;
+            overflow: visible;
         }
 
         /* Τίτλος στο πάνω μέρος */
@@ -121,7 +120,8 @@
             margin-bottom: 1.5rem;
             padding-bottom: 0.5rem;
             border-bottom: 3px solid #8b6b4c;
-            padding-right: 100px; /* Χώρος για το λογότυπο */
+            padding-right: 100px;
+            flex-shrink: 0;
         }
 
         /* Content scaling για διαφορετικές οθόνες */
@@ -130,7 +130,7 @@
             display: flex;
             flex-direction: column;
             padding: 1rem;
-            overflow: auto;
+            overflow: visible;
         }
 
         .text-content {
@@ -138,7 +138,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            overflow: auto;
+            overflow: visible;
         }
 
         .image-slide {
@@ -146,7 +146,7 @@
             display: flex;
             flex-direction: column;
             padding: 1rem;
-            overflow: auto;
+            overflow: visible;
         }
 
         .image-container {
@@ -246,28 +246,28 @@
             display: block;
         }
 
-        /* Navigation */
+        /* Navigation - ΜΕΙΩΣΗ ΚΟΥΜΠΙΩΝ ΚΑΤΑ 50% */
         #navigation-buttons {
-            padding: 1rem;
+            padding: 0.5rem;
             background-color: #f9f9f9;
             border-top: 1px solid #e5e5e5;
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.25rem;
             flex-shrink: 0;
             position: relative;
         }
 
         .nav-buttons-container {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.25rem;
             width: 100%;
             justify-content: space-between;
         }
 
         .nav-button {
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.5rem;
             border-radius: 8px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -276,7 +276,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 0.25rem;
             flex: 1;
         }
 
@@ -305,19 +305,19 @@
             font-weight: 600;
         }
 
-        /* Κουμπί Κεντρικής Σελίδας - ΜΙΑ ΣΕΙΡΑ */
+        /* Κουμπί Κεντρικής Σελίδας - ΜΕΙΩΣΗ ΚΑΤΑ 50% */
         .central-return-row {
             display: flex;
             justify-content: center;
             width: 100%;
-            margin-top: 0.5rem;
-            margin-bottom: 1.5rem; /* Χώρος για το κείμενο Δήμου */
+            margin-top: 0.25rem;
+            margin-bottom: 1.5rem;
         }
 
         .central-return-button {
             background-color: #9333ea;
             color: white;
-            padding: 0.75rem 2rem;
+            padding: 0.375rem 1rem;
             border-radius: 8px;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -326,12 +326,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 0.25rem;
             text-decoration: none;
             border: none;
             cursor: pointer;
             max-width: 300px;
             width: 100%;
+            font-size: 0.5rem;
         }
 
         .central-return-button:hover {
@@ -372,6 +373,17 @@
 
         .conclusion-box:hover {
             transform: translateY(-3px);
+        }
+
+        /* ΝΕΟ: Μεγαλύτερη γραμματοσειρά για συγκεκριμένα πλαίσια */
+        #slide-2 .highlight-box,
+        #slide-4 .highlight-box,
+        #slide-5 .highlight-box,
+        #slide-5 .conclusion-box,
+        #slide-7 .highlight-box,
+        #slide-10 .highlight-box {
+            font-size: 1.125rem; /* ίδιο με text-lg */
+            line-height: 1.75rem;
         }
 
         /* Action buttons για τελική σελίδα */
@@ -424,30 +436,22 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
-        /* Scrollbar styling */
-        .content-scaling::-webkit-scrollbar,
-        .text-content::-webkit-scrollbar,
-        .image-slide::-webkit-scrollbar {
+        /* Scrollbar styling - ΤΩΡΑ ΓΙΑ ΟΛΟΚΛΗΡΟ ΤΟ SLIDE */
+        .slide::-webkit-scrollbar {
             width: 8px;
         }
 
-        .content-scaling::-webkit-scrollbar-track,
-        .text-content::-webkit-scrollbar-track,
-        .image-slide::-webkit-scrollbar-track {
+        .slide::-webkit-scrollbar-track {
             background: #f1f1f1;
             border-radius: 4px;
         }
 
-        .content-scaling::-webkit-scrollbar-thumb,
-        .text-content::-webkit-scrollbar-thumb,
-        .image-slide::-webkit-scrollbar-thumb {
+        .slide::-webkit-scrollbar-thumb {
             background: #8b6b4c;
             border-radius: 4px;
         }
 
-        .content-scaling::-webkit-scrollbar-thumb:hover,
-        .text-content::-webkit-scrollbar-thumb:hover,
-        .image-slide::-webkit-scrollbar-thumb:hover {
+        .slide::-webkit-scrollbar-thumb:hover {
             background: #6d533a;
         }
 
@@ -456,7 +460,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            overflow: auto;
+            overflow: visible;
         }
 
         .tholos-images {
@@ -499,13 +503,13 @@
             }
             
             .nav-button {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+                font-size: 0.45rem;
             }
             
             .central-return-button {
-                padding: 0.6rem 1.5rem;
-                font-size: 0.9rem;
+                padding: 0.3rem 0.8rem;
+                font-size: 0.45rem;
             }
             
             .action-button {
@@ -548,6 +552,17 @@
             .thank-you-text {
                 font-size: 2rem;
             }
+
+            /* Μεγαλύτερη γραμματοσειρά για mobile */
+            #slide-2 .highlight-box,
+            #slide-4 .highlight-box,
+            #slide-5 .highlight-box,
+            #slide-5 .conclusion-box,
+            #slide-7 .highlight-box,
+            #slide-10 .highlight-box {
+                font-size: 1rem;
+                line-height: 1.6rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -564,13 +579,13 @@
             }
             
             .nav-button {
-                padding: 0.5rem 0.8rem;
-                font-size: 0.8rem;
+                padding: 0.25rem 0.5rem;
+                font-size: 0.4rem;
             }
             
             .central-return-button {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
+                padding: 0.25rem 0.6rem;
+                font-size: 0.4rem;
             }
             
             .image-container,
@@ -618,6 +633,17 @@
             .thank-you-text {
                 font-size: 1.5rem;
             }
+
+            /* Μεγαλύτερη γραμματοσειρά για μικρές οθόνες */
+            #slide-2 .highlight-box,
+            #slide-4 .highlight-box,
+            #slide-5 .highlight-box,
+            #slide-5 .conclusion-box,
+            #slide-7 .highlight-box,
+            #slide-10 .highlight-box {
+                font-size: 0.9rem;
+                line-height: 1.5rem;
+            }
         }
 
         @media (min-width: 1200px) {
@@ -634,13 +660,13 @@
             }
             
             .nav-button {
-                padding: 1rem 2rem;
-                font-size: 1.2rem;
+                padding: 0.5rem 1rem;
+                font-size: 0.6rem;
             }
             
             .central-return-button {
-                padding: 1rem 2.5rem;
-                font-size: 1.2rem;
+                padding: 0.5rem 1.25rem;
+                font-size: 0.6rem;
                 max-width: 350px;
             }
             
@@ -658,6 +684,17 @@
             .thank-you-text {
                 font-size: 3rem;
             }
+
+            /* Μεγαλύτερη γραμματοσειρά για μεγάλες οθόνες */
+            #slide-2 .highlight-box,
+            #slide-4 .highlight-box,
+            #slide-5 .highlight-box,
+            #slide-5 .conclusion-box,
+            #slide-7 .highlight-box,
+            #slide-10 .highlight-box {
+                font-size: 1.25rem;
+                line-height: 1.9rem;
+            }
         }
 
         @media (min-width: 1920px) {
@@ -667,6 +704,16 @@
             
             .thank-you-text {
                 font-size: 3.5rem;
+            }
+
+            #slide-2 .highlight-box,
+            #slide-4 .highlight-box,
+            #slide-5 .highlight-box,
+            #slide-5 .conclusion-box,
+            #slide-7 .highlight-box,
+            #slide-10 .highlight-box {
+                font-size: 1.375rem;
+                line-height: 2rem;
             }
         }
 
@@ -678,6 +725,16 @@
             .thank-you-text {
                 font-size: 4rem;
             }
+
+            #slide-2 .highlight-box,
+            #slide-4 .highlight-box,
+            #slide-5 .highlight-box,
+            #slide-5 .conclusion-box,
+            #slide-7 .highlight-box,
+            #slide-10 .highlight-box {
+                font-size: 1.5rem;
+                line-height: 2.2rem;
+            }
         }
 
         @media (min-width: 3840px) {
@@ -687,6 +744,16 @@
             
             .thank-you-text {
                 font-size: 5rem;
+            }
+
+            #slide-2 .highlight-box,
+            #slide-4 .highlight-box,
+            #slide-5 .highlight-box,
+            #slide-5 .conclusion-box,
+            #slide-7 .highlight-box,
+            #slide-10 .highlight-box {
+                font-size: 1.75rem;
+                line-height: 2.5rem;
             }
         }
     </style>
@@ -1030,7 +1097,7 @@
             </div>
         </div>
 
-        <!-- Κουμπιά Πλοήγησης -->
+        <!-- Κουμπιά Πλοήγησης - ΣΤΑΘΕΡΑ ΣΤΟ ΚΑΤΩ ΜΕΡΟΣ -->
         <div id="navigation-buttons">
             <div class="nav-buttons-container">
                 <button id="prev-btn" onclick="prevSlide()" disabled class="nav-button bg-blue-500 text-white font-semibold hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed">
@@ -1099,6 +1166,9 @@
             // Εμφάνιση της νέας διαφάνειας
             slides[index].classList.add('active');
             currentSlideIndex = index;
+
+            // ΑΥΤΟΜΑΤΟ SCROLL ΣΤΗΝ ΚΟΡΥΦΗ ΚΑΘΕ ΣΕΛΙΔΑΣ
+            slides[index].scrollTop = 0;
 
             // Ενημέρωση UI
             updateButtons();
